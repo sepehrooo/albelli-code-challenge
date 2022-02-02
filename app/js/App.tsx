@@ -1,31 +1,17 @@
 import React, { ReactElement } from 'react'
 import { hot } from 'react-hot-loader'
+import Header from './components/Header/Header'
+import ImageEditor from './components/ImageEditor/ImageEditor'
+import { StoreProvider } from './store/Store'
 
 function App(): ReactElement {
-    const [count, setCount] = React.useState<number>(0)
-
-    const increment = (): void => {
-        setCount((c) => c + 1)
-    }
-
-    const decrement = (): void => {
-        setCount((c) => c - 1)
-    }
-
     return (
-        <div>
-            <h2>
-                Numbersss: <b>{count}</b>
-            </h2>
-            <br />
-            <br />
-            <button type="button" onClick={() => increment()}>
-                Increment
-            </button>{' '}
-            <button type="button" onClick={() => decrement()}>
-                Decrement
-            </button>{' '}
-        </div>
+        <StoreProvider>
+            <>
+                <Header />
+                <ImageEditor />
+            </>
+        </StoreProvider>
     )
 }
 

@@ -10,4 +10,5 @@ module.exports = {
         '^.+\\.(ts|tsx)?$': 'ts-jest',
         '^.+\\.(js|jsx)$': 'babel-jest',
     },
+    testEnvironment: 'jsdom',
 }
