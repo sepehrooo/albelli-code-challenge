@@ -1,0 +1,2 @@
+*.css
+*.svgyarn add -D prettier
