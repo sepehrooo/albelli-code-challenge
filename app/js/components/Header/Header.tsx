@@ -3,12 +3,17 @@ import FileUploadButton from '../General/FileUploadButton'
 
 function Header(): JSX.Element {
     return (
-        <div data-testid="header-component">
+        <header className="header" data-testid="header-component">
             <div data-testid="logo">Photo Resizer</div>
             <FileUploadButton
+                buttonText="Upload Image"
                 handleFileUpload={(file) => console.log(file.name)}
             />
-        </div>
+            <FileUploadButton
+                buttonText="Upload JSON"
+                handleFileUpload={(file) => console.log(file)}
+            />
+        </header>
     )
 }
 
