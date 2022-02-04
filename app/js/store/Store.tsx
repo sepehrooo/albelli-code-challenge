@@ -8,14 +8,14 @@ import React, {
 import {
     Actions,
     canvasReducer,
+    CanvasState,
     initialState,
-    PhotoState,
 } from './canvasReducer'
 
 export const Store = createContext<{
-    state: PhotoState
+    state: CanvasState
     dispatch: Dispatch<Actions>
-}>({ state: {}, dispatch: () => null })
+}>({ state: initialState, dispatch: () => null })
 
 export function StoreProvider({
     children,

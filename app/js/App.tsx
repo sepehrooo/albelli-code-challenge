@@ -3,7 +3,7 @@ import { hot } from 'react-hot-loader'
 import Header from './components/Header/Header'
 import ImageEditor from './components/ImageEditor/ImageEditor'
 import { StoreProvider } from './store/Store'
-import '../sass/app.scss'
+import '../styles/app.scss'
 
 function App(): ReactElement {
     return (

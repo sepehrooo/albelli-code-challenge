@@ -1,0 +1,14 @@
+@use '../../../styles/variables.scss' as *;
+.image-editor {
+    .row {
+        margin: 10px 0;
+        gap: 10px;
+    }
+    .submit-button {
+        padding: 15px 40px;
+        background-color: $primaryColor;
+        &:hover {
+            background-color: $primaryColorHover;
+        }
+    }
+}

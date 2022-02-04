@@ -19,6 +19,11 @@ module.exports = {
                 },
             },
             {
+                test: /\.(js|jsx)$/,
+                use: 'react-hot-loader/webpack',
+                include: /node_modules/,
+            },
+            {
                 test: /\.(ts|tsx)?$/,
                 loader: 'ts-loader',
                 exclude: /node_modules/,

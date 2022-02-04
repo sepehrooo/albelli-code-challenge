@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import './FileUploadButton.scss'
 
 interface Props {
     buttonText?: string
@@ -24,6 +25,7 @@ function FileUploadButton({
     return (
         <>
             <button
+                className="upload-button"
                 onClick={handleButtonClick}
                 type="button"
                 data-testid="file-upload-button"
@@ -35,6 +37,7 @@ function FileUploadButton({
                 ref={inputRef}
                 type="file"
                 data-testid="file-upload-input"
+                className="hide"
             />
         </>
     )

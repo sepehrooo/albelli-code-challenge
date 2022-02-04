@@ -1,0 +1,12 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    background-color: #8b64bf;
+    padding: 10px 20px;
+    .logo {
+        line-height: 60px;
+        font-size: large;
+        color: white;
+    }
+}

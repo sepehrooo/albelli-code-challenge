@@ -1,0 +1,27 @@
+@use './variables.scss' as *;
+body {
+    font: 100% $font;
+}
+button {
+    padding: 10px 15px;
+    background-color: $secondaryColor;
+    border-radius: 3px;
+    color: white;
+    border:0;
+    text-decoration: none;
+    &:hover {
+        background-color: $secondaryColorHover;
+    }
+}
+.hide {
+    display: none;
+}
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.error {
+    color: red;
+}
