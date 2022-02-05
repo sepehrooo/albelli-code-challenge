@@ -25,10 +25,18 @@ function ImageEditor(): JSX.Element {
 
     return (
         <section data-testid="image-editor-component" className="image-editor">
-            {message && <div className="row error">Warning: {message}</div>}
+            {message && (
+                <div data-testid="error-msg" className="row error">
+                    Warning: {message}
+                </div>
+            )}
             {src && (
                 <div className="row">
-                    <button onClick={() => dispatch(moveUp())} type="button">
+                    <button
+                        data-testid="move-up-button"
+                        onClick={() => dispatch(moveUp())}
+                        type="button"
+                    >
                         Move Up
                     </button>
                 </div>
@@ -36,14 +44,22 @@ function ImageEditor(): JSX.Element {
 
             <div className="row">
                 {src && (
-                    <button onClick={() => dispatch(moveLeft())} type="button">
+                    <button
+                        data-testid="move-left-button"
+                        onClick={() => dispatch(moveLeft())}
+                        type="button"
+                    >
                         Move Left
                     </button>
                 )}
 
                 <Canvas />
                 {src && (
-                    <button onClick={() => dispatch(moveRight())} type="button">
+                    <button
+                        data-testid="move-right-button"
+                        onClick={() => dispatch(moveRight())}
+                        type="button"
+                    >
                         Move Right
                     </button>
                 )}
@@ -52,6 +68,7 @@ function ImageEditor(): JSX.Element {
                 <>
                     <div className="row">
                         <button
+                            data-testid="move-down-button"
                             onClick={() => dispatch(moveDown())}
                             type="button"
                         >
@@ -60,12 +77,14 @@ function ImageEditor(): JSX.Element {
                     </div>
                     <div className="row">
                         <button
+                            data-testid="zoom-in-button"
                             onClick={() => dispatch(scaleUp())}
                             type="button"
                         >
                             Zoom In
                         </button>
                         <button
+                            data-testid="zoom-out-button"
                             onClick={() => dispatch(scaleDown())}
                             type="button"
                         >
@@ -74,6 +93,7 @@ function ImageEditor(): JSX.Element {
                     </div>
                     <div className="row">
                         <button
+                            data-testid="submit-button"
                             type="button"
                             onClick={submitHandler}
                             className="submit-button"

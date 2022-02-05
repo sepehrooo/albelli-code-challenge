@@ -40,6 +40,7 @@ function Canvas(): JSX.Element {
     */
     return (
         <canvas
+            data-testid="canvas"
             className="image-canvas"
             ref={canvasRef}
             width={canvasWidth}
