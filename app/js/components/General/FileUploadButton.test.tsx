@@ -14,7 +14,7 @@ describe('File upload button', () => {
     test(`button without text prop will 
         render a default upload button`, () => {
         render(<FileUploadButton handleFileUpload={handleFileUpload} />)
-        expect(screen.queryByTestId('file-upload-button')).toHaveTextContent(
+        expect(screen.getByTestId('file-upload-button')).toHaveTextContent(
             'Upload File'
         )
     })
@@ -26,9 +26,13 @@ describe('File upload button', () => {
                 buttonText="Upload This"
             />
         )
-        expect(screen.queryByTestId('file-upload-button')).toHaveTextContent(
+        expect(screen.getByTestId('file-upload-button')).toHaveTextContent(
             'Upload This'
         )
+    })
+    test("input element renders with 'hide' className so it's hidden", () => {
+        render(<FileUploadButton handleFileUpload={handleFileUpload} />)
+        expect(screen.getByTestId('file-upload-input')).toHaveClass('hide')
     })
     test(`uploading a file will trigger
          handleFileUpload with the file`, async () => {

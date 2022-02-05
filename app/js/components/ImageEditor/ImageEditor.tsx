@@ -52,6 +52,7 @@ function ImageEditor(): JSX.Element {
 
     return (
         <section data-testid="image-editor-component" className="image-editor">
+            {message && <div className="row error">Warning: {message}</div>}
             {src && (
                 <div className="row">
                     <button onClick={() => dispatch(moveUp())} type="button">
@@ -98,19 +99,16 @@ function ImageEditor(): JSX.Element {
                             Zoom Out
                         </button>
                     </div>
+                    <div className="row">
+                        <button
+                            type="button"
+                            onClick={submitHandler}
+                            className="submit-button"
+                        >
+                            Submit
+                        </button>
+                    </div>
                 </>
-            )}
-            {message && <div className="row error">Warning: {message}</div>}
-            {src && (
-                <div className="row">
-                    <button
-                        type="button"
-                        onClick={submitHandler}
-                        className="submit-button"
-                    >
-                        Submit
-                    </button>
-                </div>
             )}
         </section>
     )
