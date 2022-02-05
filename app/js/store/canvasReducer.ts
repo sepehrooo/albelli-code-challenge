@@ -2,10 +2,11 @@ export const MOVE_RIGHT = 'APP/IMAGE_EDITOR/MOVE_RIGHT' as const
 export const MOVE_LEFT = 'APP/IMAGE_EDITOR/MOVE_LEFT' as const
 export const MOVE_UP = 'APP/IMAGE_EDITOR/MOVE_UP' as const
 export const MOVE_DOWN = 'APP/IMAGE_EDITOR/MOVE_DOWN' as const
-export const UPLOAD_FILE = 'App/IMAGE_EDITOR/UPLOAD' as const
-export const SCALE_UP = 'App/IMAGE_EDITOR/SCALE_UP' as const
-export const SCALE_DOWN = 'App/IMAGE_EDITOR/SCALE_DOWN' as const
-export const ERROR_MESSAGE = 'App/IMAGE_EDITOR/ERROR_MESSAGE' as const
+export const UPLOAD_FILE = 'APP/IMAGE_EDITOR/UPLOAD' as const
+export const SCALE_UP = 'APP/IMAGE_EDITOR/SCALE_UP' as const
+export const SCALE_DOWN = 'APP/IMAGE_EDITOR/SCALE_DOWN' as const
+export const ERROR_MESSAGE = 'APP/IMAGE_EDITOR/ERROR_MESSAGE' as const
+export const DEFAULT = 'APP/IMAGE_EDITOR/DEFAULT' as const
 export type Actions =
     | { type: typeof MOVE_RIGHT }
     | { type: typeof MOVE_LEFT }
@@ -15,6 +16,7 @@ export type Actions =
     | { type: typeof SCALE_UP }
     | { type: typeof SCALE_DOWN }
     | { type: typeof ERROR_MESSAGE; payload: string }
+    | { type: typeof DEFAULT }
 
 export interface PhotoState {
     src?: string | null
@@ -72,7 +74,7 @@ export const setErrorMessage = (payload: string): Actions => ({
 
 export const canvasReducer = (
     state: CanvasState = initialState,
-    action: Actions = { type: MOVE_RIGHT }
+    action: Actions = { type: DEFAULT }
 ): CanvasState => {
     const {
         width: canvasWidth,
@@ -144,7 +146,7 @@ export const canvasReducer = (
         }
 
         case SCALE_UP: {
-            const newScale = scale + 0.1
+            const newScale = parseFloat((scale + 0.1).toFixed(1))
             return {
                 ...state,
                 image: { ...state.image, scale: newScale },
@@ -157,7 +159,7 @@ export const canvasReducer = (
             Checking if the newly scaled image covers canvas, 
             if not we won't update the state
             */
-            const newScale = scale - 0.1
+            const newScale = parseFloat((scale - 0.1).toFixed(1))
             const scaledImageWidth = width * newScale * ratio
             const scaledImageHeight = height * newScale * ratio
             if (
@@ -183,6 +185,7 @@ export const canvasReducer = (
                 ...state,
                 message: action.payload,
             }
+        case DEFAULT:
         default:
             return state
     }

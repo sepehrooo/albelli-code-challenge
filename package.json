@@ -6,7 +6,7 @@
     "scripts": {
         "build": "webpack",
         "start": "webpack-dev-server",
-        "test": "jest"
+        "test": "jest -o"
     },
     "devDependencies": {
         "@babel/core": "^7.16.12",
