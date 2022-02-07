@@ -1,13 +1,5 @@
-interface Props {
-    canvas: HTMLCanvasElement
-    src: string
-    x: number
-    y: number
-    width: number
-    height: number
-    ratio: number
-    scale: number
-}
+import { DrawImageToCanvasProps } from './drawImageToCanvas.interface'
+
 export default ({
     canvas,
     src,
@@ -17,7 +9,7 @@ export default ({
     height,
     ratio,
     scale,
-}: Props): void => {
+}: DrawImageToCanvasProps): void => {
     const canvasContext = canvas?.getContext('2d')
     const imageObj = new Image()
     imageObj.onload = () => {

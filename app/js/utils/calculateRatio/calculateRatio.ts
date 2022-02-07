@@ -1,9 +1,4 @@
-interface CalculateRatioProps {
-    canvasWidth: number
-    canvasHeight: number
-    imageWidth: number
-    imageHeight: number
-}
+import { CalculateRatioProps } from './calculateRatio.interface'
 
 export default ({
     canvasWidth,

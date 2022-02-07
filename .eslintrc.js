@@ -44,12 +44,13 @@ module.exports = {
                 allowExpressions: true,
             },
         ],
-        'max-len': ['warn', { code: 80 }],
+        'max-len': ['warn', { code: 80, ignorePattern: '^import .*' }],
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
         'import/prefer-default-export': 'off',
         'react/prop-types': 'off',
-        'react/jsx-props-no-spreading': 'off', // won't throw error when you use prop spreading {...props}
+        // won't throw error when you use prop spreading {...props}
+        'react/jsx-props-no-spreading': 'off',
         'import/no-extraneous-dependencies': [
             'error',
             {

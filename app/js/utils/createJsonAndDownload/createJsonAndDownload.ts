@@ -1,5 +1,5 @@
-import { CanvasState } from '../store/canvasReducer'
-import pixelToInch from './pixelToInch'
+import { CanvasState } from '../../store/canvasReducer'
+import pixelToInch from '../pixelToInch/pixelToInch'
 
 export default (data: CanvasState): void => {
     const {

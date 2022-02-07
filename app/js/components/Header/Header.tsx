@@ -5,7 +5,6 @@ import './header.scss'
 
 function Header(): JSX.Element {
     const [file, setFile] = useState<File | null>(null)
-    // upload logic is inside the custom hook
     const { upload } = useFileUpload()
 
     useEffect(() => {
@@ -14,19 +13,18 @@ function Header(): JSX.Element {
         }
     }, [file, upload])
 
-    const handleFileUpload = (uploadedFile: File): void => {
+    const handleFileSelect = (uploadedFile: File): void => {
         setFile(uploadedFile)
     }
 
     return (
         <header className="header" data-testid="header-component">
-            <div className="logo" data-testid="logo">
+            <div className="header__logo" data-testid="logo">
                 Photo Resizer
             </div>
-            <FileUploadButton
-                buttonText="Upload Image/JSON"
-                handleFileUpload={handleFileUpload}
-            />
+            <FileUploadButton onFileSelect={handleFileSelect}>
+                Upload Image/JSON
+            </FileUploadButton>
         </header>
     )
 }

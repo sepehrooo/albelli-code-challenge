@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
-import Header from './Header'
+import Header from '.'
 
 describe('renders components and children with no errors', () => {
     beforeEach(() => {

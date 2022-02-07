@@ -1,15 +1,20 @@
 import { useCallback, useContext } from 'react'
 import { setErrorMessage, uploadFile } from '../store/canvasReducer'
-import { Store } from '../store/Store'
-import calculateRatio from '../utils/calculateRatio'
-import inchToPixel from '../utils/inchToPixel'
+import AppContext from '../store/AppContext'
+import calculateRatio from '../utils/calculateRatio/calculateRatio'
+import inchToPixel from '../utils/inchToPixel/inchToPixel'
+import {
+    canvasHeightInch,
+    canvasWidthInch,
+    printPixelPerInchQuality,
+} from '../utils/variables'
 
 interface HookReturn {
     upload: (file: File) => void | null
 }
 
 const useFileUpload = (): HookReturn => {
-    const { dispatch } = useContext(Store)
+    const { dispatch } = useContext(AppContext)
 
     const upload = useCallback(
         (file: File): void => {
@@ -36,24 +41,19 @@ const useFileUpload = (): HookReturn => {
                             /*
                             Calculating ratio so the 
                             image always fills the canvas 
-
-                            App Requirement: 15" x 10" canvas
-                            Since industry standard print quality
-                            is 300PPI (Pixels Per Inch), The width of the 
-                            canvas would be 15" * 300PPI = 4500 Pixels 
-                            And the height of the canvas would be
-                            10 * 300 = 3000 Pixels
                             */
                             const ratio = calculateRatio({
-                                canvasWidth: 4500,
-                                canvasHeight: 3000,
+                                canvasWidth:
+                                    canvasWidthInch * printPixelPerInchQuality,
+                                canvasHeight:
+                                    canvasHeightInch * printPixelPerInchQuality,
                                 imageWidth: width,
                                 imageHeight: height,
                             })
                             /* 
-                                dispatching action to update global
-                                state with the uploaded image
-                                */
+                            dispatching action to update global
+                            state with the uploaded image
+                            */
                             dispatch(
                                 uploadFile({
                                     src: img.src,
@@ -112,8 +112,8 @@ const useFileUpload = (): HookReturn => {
                         }
                         /*
                         dispatch action to update the state with JSON 
-                        data. lso convert Inch to Pixels based on the 
-                        300PPI Industry standard print quality
+                        data. also convert Inch to Pixels based on the defined
+                        PPI print quality set in app/js/utils/variables.ts
                         */
                         dispatch(
                             uploadFile({

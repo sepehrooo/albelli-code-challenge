@@ -1,0 +1,29 @@
+@use '../../../../styles/variables.scss' as *;
+.btn {
+    padding: 10px 15px;
+    background-color: $secondaryColor;
+    border-radius: 3px;
+    color: white;
+    border:0;
+    text-decoration: none;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: $secondaryColorHover;
+    }
+    
+    &--submit {
+        padding: 15px 40px;
+        background-color: $primaryColor;
+        &:hover {
+            background-color: $primaryColorHover;
+        }
+    }
+    
+    &--upload {
+        background-color: $tertiaryColor;
+        &:hover{
+            background-color: $tertiaryColorHover;
+        }
+    }
+}

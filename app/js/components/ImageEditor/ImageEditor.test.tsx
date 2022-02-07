@@ -1,15 +1,31 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { Store, StoreProvider } from '../../store/Store'
-import ImageEditor from './ImageEditor'
+import AppContext from '../../store/AppContext'
+import ImageEditor from '.'
 
 describe('Image Editor', () => {
     describe('When an image is not loaded inside image editor', () => {
         beforeEach(() => {
+            const state = {
+                width: 4500,
+                height: 3000,
+                image: {
+                    src: null,
+                    width: 0,
+                    height: 0,
+                    x: 0,
+                    y: 0,
+                    scale: 1,
+                    ratio: 1,
+                },
+                message: '',
+            }
+            const dispatch = jest.fn()
             render(
-                <StoreProvider>
+                // eslint-disable-next-line react/jsx-no-constructed-context-values
+                <AppContext.Provider value={{ state, dispatch }}>
                     <ImageEditor />
-                </StoreProvider>
+                </AppContext.Provider>
             )
         })
         test('image editor component should load with no errors', () => {
@@ -75,9 +91,10 @@ describe('Image Editor', () => {
             const dispatch = jest.fn()
 
             render(
-                <Store.Provider value={{ state, dispatch }}>
+                // eslint-disable-next-line react/jsx-no-constructed-context-values
+                <AppContext.Provider value={{ state, dispatch }}>
                     <ImageEditor />
-                </Store.Provider>
+                </AppContext.Provider>
             )
         })
         test('image editor component should load with no errors', () => {
@@ -133,9 +150,10 @@ describe('Image Editor', () => {
             }
             const dispatch = jest.fn()
             render(
-                <Store.Provider value={{ state, dispatch }}>
+                // eslint-disable-next-line react/jsx-no-constructed-context-values
+                <AppContext.Provider value={{ state, dispatch }}>
                     <ImageEditor />
-                </Store.Provider>
+                </AppContext.Provider>
             )
         })
         test('image editor component should load with no errors', () => {

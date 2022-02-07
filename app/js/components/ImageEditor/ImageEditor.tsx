@@ -7,13 +7,16 @@ import {
     scaleDown,
     scaleUp,
 } from '../../store/canvasReducer'
-import { Store } from '../../store/Store'
+import AppContext from '../../store/AppContext'
 import createJsonAndDownload from '../../utils/createJsonAndDownload'
+import Button from '../General/Button'
 import Canvas from './Canvas'
 import './image-editor.scss'
+import Error from '../General/Error'
+import Row from '../General/Row'
 
 function ImageEditor(): JSX.Element {
-    const { state, dispatch } = useContext(Store)
+    const { state, dispatch } = useContext(AppContext)
     const {
         image: { src },
         message,
@@ -25,82 +28,80 @@ function ImageEditor(): JSX.Element {
 
     return (
         <section data-testid="image-editor-component" className="image-editor">
-            {message && (
-                <div data-testid="error-msg" className="row error">
-                    Warning: {message}
-                </div>
-            )}
             {src && (
-                <div className="row">
-                    <button
+                <div className="image-editor__row row">
+                    <Button
                         data-testid="move-up-button"
                         onClick={() => dispatch(moveUp())}
-                        type="button"
+                        className="btn"
                     >
-                        Move Up
-                    </button>
+                        Move Up &#8593;
+                    </Button>
                 </div>
             )}
 
-            <div className="row">
+            <div className="image-editor__row row">
                 {src && (
-                    <button
+                    <Button
                         data-testid="move-left-button"
                         onClick={() => dispatch(moveLeft())}
-                        type="button"
+                        className="btn"
                     >
-                        Move Left
-                    </button>
+                        &#8592; Move Left
+                    </Button>
                 )}
 
                 <Canvas />
                 {src && (
-                    <button
+                    <Button
                         data-testid="move-right-button"
                         onClick={() => dispatch(moveRight())}
-                        type="button"
+                        className="btn"
                     >
-                        Move Right
-                    </button>
+                        Move Right &#8594;
+                    </Button>
                 )}
             </div>
             {src && (
                 <>
-                    <div className="row">
-                        <button
+                    <Row className="image-editor__row row">
+                        <Button
                             data-testid="move-down-button"
                             onClick={() => dispatch(moveDown())}
-                            type="button"
+                            className="btn"
                         >
-                            Move Down
-                        </button>
-                    </div>
-                    <div className="row">
-                        <button
+                            Move Down &#8595;
+                        </Button>
+                    </Row>
+                    <Row className="image-editor__row row">
+                        <Button
                             data-testid="zoom-in-button"
                             onClick={() => dispatch(scaleUp())}
-                            type="button"
+                            className="btn"
                         >
-                            Zoom In
-                        </button>
-                        <button
+                            Zoom In &#8853;
+                        </Button>
+                        <Button
                             data-testid="zoom-out-button"
                             onClick={() => dispatch(scaleDown())}
-                            type="button"
+                            className="btn"
                         >
-                            Zoom Out
-                        </button>
-                    </div>
-                    <div className="row">
-                        <button
+                            Zoom Out &#8854;
+                        </Button>
+                    </Row>
+                    <Row className="image-editor__row row">
+                        <Button
                             data-testid="submit-button"
                             type="button"
                             onClick={submitHandler}
-                            className="submit-button"
+                            className="btn btn--submit"
                         >
                             Submit
-                        </button>
-                    </div>
+                        </Button>
+                    </Row>
+                    {message && (
+                        <Error data-testid="error-msg">Error: {message}</Error>
+                    )}
                 </>
             )}
         </section>
