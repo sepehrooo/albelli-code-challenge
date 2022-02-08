@@ -1,12 +1,12 @@
 # albelli-code-challenge
 Albelli's Senior Frontend Developer Code Challenge
 
-## Definitions
-Since the app requirement is to be able to convert from Inches to Pixels and vice versa, I am using the standard print industry quality of 300PPI(Pixels Per Inch) for this conversion.
+## Definitions/Variables
+Since the app requirement is to be able to convert from Inches to Pixels and vice versa, I am using the standard print industry quality of 300PPI(Pixels Per Inch) for this conversion, but you can change that and also change canvas size from app/js/variables.ts.
 
-So given that the canvas size should be 15" x 10", it would be 4500px * 3000px in our app which we'll style to be 375px * 250px to be nice in a mobile/desktop screen.
+So given that the canvas size should be 15" x 10" (You can change it from app/js/variables.ts), it would be 4500px * 3000px in our app which we'll style to be smaller to be nice in a mobile/desktop screen.
 
-Also everywhere in our app when we need to convert from pixels to inches or vice versa we'll use 300PPI as our conversion unit. Like when we want to generate JSON file in inches and when we want to import a JSON file in inches and convert it to pixels.
+Also everywhere in our app when we need to convert from pixels to inches or vice versa we'll use printPixelPerInchQuality variable from app/js/variables.ts (default: 300PPI) as our conversion unit. Like when we want to generate JSON file in inches and when we want to import a JSON file in inches and convert it to pixels.
 
 ## Installation
 
@@ -29,5 +29,5 @@ Since I wanted to use **React** with **Typescript** to showcase my skills and al
 - **React Testing Library** and **Jest** for testing
 - **ESLint** and **Prettier** for code formatting and Linting
 - **Webpack** as the module bundler and **babel** as the typescript compiler
-- **Sass** for styling
+- **Sass** for styling with **BEM** methodology
 - **Yarn** for the package manager
