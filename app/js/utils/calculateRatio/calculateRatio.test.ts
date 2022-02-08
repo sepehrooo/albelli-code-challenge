@@ -1,7 +1,6 @@
 import calculateRatio from './calculateRatio'
 
-test(`result of calculateRatio given known props should 
-    result in a known value`, () => {
+test(`called with props`, () => {
     const result = calculateRatio({
         canvasWidth: 4500,
         canvasHeight: 3000,

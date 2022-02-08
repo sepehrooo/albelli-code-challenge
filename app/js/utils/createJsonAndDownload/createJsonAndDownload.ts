@@ -1,7 +1,7 @@
-import { CanvasState } from '../../store/canvasReducer'
-import pixelToInch from '../pixelToInch/pixelToInch'
+import { CanvasProps } from '../../interfaces/CanvasProps.interface'
+import pixelToInch from '../pixelToInch'
 
-export default (data: CanvasState): void => {
+export default (data: CanvasProps): void => {
     const {
         width: canvasWidth,
         height: canvasHeight,

@@ -10,10 +10,10 @@ import {
 import AppContext from '../../store/AppContext'
 import createJsonAndDownload from '../../utils/createJsonAndDownload'
 import Button from '../General/Button'
+import Row from '../General/Row'
+import Error from '../General/Error'
 import Canvas from './Canvas'
 import './image-editor.scss'
-import Error from '../General/Error'
-import Row from '../General/Row'
 
 function ImageEditor(): JSX.Element {
     const { state, dispatch } = useContext(AppContext)
@@ -29,41 +29,36 @@ function ImageEditor(): JSX.Element {
     return (
         <section data-testid="image-editor-component" className="image-editor">
             {src && (
-                <div className="image-editor__row row">
-                    <Button
-                        data-testid="move-up-button"
-                        onClick={() => dispatch(moveUp())}
-                        className="btn"
-                    >
-                        Move Up &#8593;
-                    </Button>
-                </div>
-            )}
-
-            <div className="image-editor__row row">
-                {src && (
-                    <Button
-                        data-testid="move-left-button"
-                        onClick={() => dispatch(moveLeft())}
-                        className="btn"
-                    >
-                        &#8592; Move Left
-                    </Button>
-                )}
-
-                <Canvas />
-                {src && (
-                    <Button
-                        data-testid="move-right-button"
-                        onClick={() => dispatch(moveRight())}
-                        className="btn"
-                    >
-                        Move Right &#8594;
-                    </Button>
-                )}
-            </div>
-            {src && (
                 <>
+                    <div className="image-editor__row row">
+                        <Button
+                            data-testid="move-up-button"
+                            onClick={() => dispatch(moveUp())}
+                            className="btn"
+                        >
+                            Move Up &#8593;
+                        </Button>
+                    </div>
+
+                    <div className="image-editor__row row">
+                        <Button
+                            data-testid="move-left-button"
+                            onClick={() => dispatch(moveLeft())}
+                            className="btn"
+                        >
+                            &#8592; Move Left
+                        </Button>
+
+                        <Canvas />
+                        <Button
+                            data-testid="move-right-button"
+                            onClick={() => dispatch(moveRight())}
+                            className="btn"
+                        >
+                            Move Right &#8594;
+                        </Button>
+                    </div>
+
                     <Row className="image-editor__row row">
                         <Button
                             data-testid="move-down-button"
@@ -99,11 +94,9 @@ function ImageEditor(): JSX.Element {
                             Submit
                         </Button>
                     </Row>
-                    {message && (
-                        <Error data-testid="error-msg">Error: {message}</Error>
-                    )}
                 </>
             )}
+            {message && <Error data-testid="error-msg">Error: {message}</Error>}
         </section>
     )
 }

@@ -28,12 +28,6 @@ function Canvas(): JSX.Element {
         }
     }, [src, x, y, scale, ratio, width, height])
 
-    /* 
-    We divide canvasWidth to 12 for styling and the height will adjust 
-    automatically so it looks good in all devices. This is not the best
-    approach but since in app requirements I was instructed
-    not to spend too much time on styling I chose this approach
-    */
     return (
         <canvas
             data-testid="canvas"

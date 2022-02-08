@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import AppContext from '../../store/AppContext'
@@ -22,7 +23,6 @@ describe('Image Editor', () => {
             }
             const dispatch = jest.fn()
             render(
-                // eslint-disable-next-line react/jsx-no-constructed-context-values
                 <AppContext.Provider value={{ state, dispatch }}>
                     <ImageEditor />
                 </AppContext.Provider>
@@ -69,7 +69,7 @@ describe('Image Editor', () => {
             ).not.toBeInTheDocument()
         })
         test('canvas element should show', () => {
-            expect(screen.queryByTestId('canvas')).toBeInTheDocument()
+            expect(screen.queryByTestId('canvas')).not.toBeInTheDocument()
         })
     })
     describe('When an image is loaded inside image editor', () => {
@@ -91,7 +91,6 @@ describe('Image Editor', () => {
             const dispatch = jest.fn()
 
             render(
-                // eslint-disable-next-line react/jsx-no-constructed-context-values
                 <AppContext.Provider value={{ state, dispatch }}>
                     <ImageEditor />
                 </AppContext.Provider>
@@ -150,7 +149,6 @@ describe('Image Editor', () => {
             }
             const dispatch = jest.fn()
             render(
-                // eslint-disable-next-line react/jsx-no-constructed-context-values
                 <AppContext.Provider value={{ state, dispatch }}>
                     <ImageEditor />
                 </AppContext.Provider>

@@ -49,7 +49,6 @@ describe('different actions will return the desired state', () => {
             }
             const newState = canvasReducer(state, moveRight())
             expect(newState.image).toStrictEqual(state.image)
-            expect(newState.message.length).not.toEqual(0)
         })
         test('with a state mock that can move right', () => {
             const imageWidth = canvasWidth + 0.3 * canvasWidth
@@ -83,7 +82,6 @@ describe('different actions will return the desired state', () => {
             const { x, ...imageWithoutX } = state.image
             const { x: newX, ...newImageWithoutX } = newState.image
             expect(newImageWithoutX).toStrictEqual(imageWithoutX)
-            expect(newState.message.length).toEqual(0)
         })
     })
     describe('MOVE_LEFT', () => {
@@ -114,7 +112,6 @@ describe('different actions will return the desired state', () => {
             }
             const newState = canvasReducer(state, moveLeft())
             expect(newState.image).toStrictEqual(state.image)
-            expect(newState.message.length).not.toEqual(0)
         })
         test('with a state mock that can move left', () => {
             const imageWidth = canvasWidth + 0.3 * canvasWidth
@@ -150,7 +147,6 @@ describe('different actions will return the desired state', () => {
             const { x, ...imageWithoutX } = state.image
             const { x: newX, ...newImageWithoutX } = newState.image
             expect(newImageWithoutX).toStrictEqual(imageWithoutX)
-            expect(newState.message.length).toEqual(0)
         })
     })
     describe('MOVE_UP', () => {
@@ -182,7 +178,6 @@ describe('different actions will return the desired state', () => {
             }
             const newState = canvasReducer(state, moveUp())
             expect(newState.image).toStrictEqual(state.image)
-            expect(newState.message.length).not.toEqual(0)
         })
         test('with a state mock that can move up', () => {
             const imageWidth = canvasWidth - 0.3 * canvasWidth
@@ -218,7 +213,6 @@ describe('different actions will return the desired state', () => {
             const { y, ...imageWithoutY } = state.image
             const { y: newY, ...newImageWithoutY } = newState.image
             expect(newImageWithoutY).toStrictEqual(imageWithoutY)
-            expect(newState.message.length).toEqual(0)
         })
     })
     describe('MOVE_DOWN', () => {
@@ -250,7 +244,6 @@ describe('different actions will return the desired state', () => {
             }
             const newState = canvasReducer(state, moveDown())
             expect(newState.image).toStrictEqual(state.image)
-            expect(newState.message.length).not.toEqual(0)
         })
         test('with a state mock that can move down', () => {
             const imageWidth = canvasWidth - 0.3 * canvasWidth
@@ -284,7 +277,6 @@ describe('different actions will return the desired state', () => {
             const { y, ...imageWithoutY } = state.image
             const { y: newY, ...newImageWithoutY } = newState.image
             expect(newImageWithoutY).toStrictEqual(imageWithoutY)
-            expect(newState.message.length).toEqual(0)
         })
     })
     describe('SCALE_UP', () => {
@@ -320,7 +312,6 @@ describe('different actions will return the desired state', () => {
             const { scale, ...imageWithoutScale } = state.image
             const { scale: newScale, ...newImageWithoutScale } = newState.image
             expect(newImageWithoutScale).toStrictEqual(imageWithoutScale)
-            expect(newState.message.length).toEqual(0)
         })
     })
     describe('SCALE_DOWN', () => {
@@ -352,7 +343,6 @@ describe('different actions will return the desired state', () => {
             }
             const newState = canvasReducer(state, scaleDown())
             expect(newState.image).toStrictEqual(state.image)
-            expect(newState.message.length).not.toEqual(0)
         })
         test('with a state mock that can scale down', () => {
             const imageWidth = canvasWidth + 0.3 * canvasWidth
@@ -386,7 +376,6 @@ describe('different actions will return the desired state', () => {
             const { scale, ...imageWithoutScale } = state.image
             const { scale: newScale, ...newImageWithoutScale } = newState.image
             expect(newImageWithoutScale).toStrictEqual(imageWithoutScale)
-            expect(newState.message.length).toEqual(0)
         })
     })
     describe('UPLOAD_FILE', () => {

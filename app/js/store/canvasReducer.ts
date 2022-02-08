@@ -1,8 +1,7 @@
-import {
-    canvasHeightInch,
-    canvasWidthInch,
-    printPixelPerInchQuality,
-} from '../variables'
+import { CanvasProps } from '../interfaces/CanvasProps.interface'
+import { ImageProps } from '../interfaces/ImageProps.interface'
+import inchToPixel from '../utils/inchToPixel'
+import { canvasHeightInch, canvasWidthInch } from '../variables'
 
 export const MOVE_RIGHT = 'APP/IMAGE_EDITOR/MOVE_RIGHT' as const
 export const MOVE_LEFT = 'APP/IMAGE_EDITOR/MOVE_LEFT' as const
@@ -13,37 +12,21 @@ export const SCALE_UP = 'APP/IMAGE_EDITOR/SCALE_UP' as const
 export const SCALE_DOWN = 'APP/IMAGE_EDITOR/SCALE_DOWN' as const
 export const ERROR_MESSAGE = 'APP/IMAGE_EDITOR/ERROR_MESSAGE' as const
 export const DEFAULT = 'APP/IMAGE_EDITOR/DEFAULT' as const
+
 export type Actions =
     | { type: typeof MOVE_RIGHT }
     | { type: typeof MOVE_LEFT }
     | { type: typeof MOVE_UP }
     | { type: typeof MOVE_DOWN }
-    | { type: typeof UPLOAD_FILE; payload: PhotoState }
+    | { type: typeof UPLOAD_FILE; payload: ImageProps }
     | { type: typeof SCALE_UP }
     | { type: typeof SCALE_DOWN }
     | { type: typeof ERROR_MESSAGE; payload: string }
     | { type: typeof DEFAULT }
 
-export interface PhotoState {
-    src?: string | null
-    width: number
-    height: number
-    x: number
-    y: number
-    scale: number
-    ratio: number
-}
-
-export interface CanvasState {
-    width: number
-    height: number
-    image: PhotoState
-    message: string
-}
-
-export const initialState: CanvasState = {
-    width: canvasWidthInch * printPixelPerInchQuality,
-    height: canvasHeightInch * printPixelPerInchQuality,
+export const initialState: CanvasProps = {
+    width: inchToPixel(canvasWidthInch),
+    height: inchToPixel(canvasHeightInch),
     image: {
         src: null,
         width: 0,
@@ -62,19 +45,21 @@ export const moveUp = (): Actions => ({ type: MOVE_UP })
 export const moveDown = (): Actions => ({ type: MOVE_DOWN })
 export const scaleUp = (): Actions => ({ type: SCALE_UP })
 export const scaleDown = (): Actions => ({ type: SCALE_DOWN })
-export const uploadFile = (payload: PhotoState): Actions => ({
+export const uploadFile = (payload: ImageProps): Actions => ({
     type: UPLOAD_FILE,
     payload,
 })
-export const setErrorMessage = (payload: string): Actions => ({
-    type: ERROR_MESSAGE,
-    payload,
-})
+export const setErrorMessage = (payload: string): Actions => {
+    return {
+        type: ERROR_MESSAGE,
+        payload,
+    }
+}
 
 export const canvasReducer = (
-    state: CanvasState = initialState,
+    state: CanvasProps = initialState,
     action: Actions = { type: DEFAULT }
-): CanvasState => {
+): CanvasProps => {
     const {
         width: canvasWidth,
         height: canvasHeight,
@@ -89,12 +74,11 @@ export const canvasReducer = (
                 return {
                     ...state,
                     image: { ...state.image, x: newX },
-                    message: '',
                 }
             }
             return {
                 ...state,
-                message: "Can't move the image anymore towards right!",
+                image: { ...state.image, x: canvasWidth - scaledImageWidth },
             }
         }
 
@@ -104,12 +88,11 @@ export const canvasReducer = (
                 return {
                     ...state,
                     image: { ...state.image, x: newX },
-                    message: '',
                 }
             }
             return {
                 ...state,
-                message: "Can't move the image anymore towards left!",
+                image: { ...state.image, x: 0 },
             }
         }
 
@@ -120,12 +103,11 @@ export const canvasReducer = (
                 return {
                     ...state,
                     image: { ...state.image, y: newY },
-                    message: '',
                 }
             }
             return {
                 ...state,
-                message: "Can't move the image anymore towards down!",
+                image: { ...state.image, y: canvasHeight - scaledImageHeight },
             }
         }
 
@@ -135,12 +117,11 @@ export const canvasReducer = (
                 return {
                     ...state,
                     image: { ...state.image, y: newY },
-                    message: '',
                 }
             }
             return {
                 ...state,
-                message: "Can't move the image anymore towards up!",
+                image: { ...state.image, y: 0 },
             }
         }
 
@@ -149,15 +130,10 @@ export const canvasReducer = (
             return {
                 ...state,
                 image: { ...state.image, scale: newScale },
-                message: '',
             }
         }
 
         case SCALE_DOWN: {
-            /* 
-            Checking if the newly scaled image covers canvas, 
-            if not we won't update the state
-            */
             const newScale = parseFloat((scale - 0.1).toFixed(1))
             const scaledImageWidth = width * newScale * ratio
             const scaledImageHeight = height * newScale * ratio
@@ -168,10 +144,9 @@ export const canvasReducer = (
                 return {
                     ...state,
                     image: { ...state.image, scale: newScale, x: 0, y: 0 },
-                    message: '',
                 }
             }
-            return { ...state, message: "Can't zoom out anymore!" }
+            return state
         }
         case UPLOAD_FILE:
             return {

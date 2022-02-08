@@ -1,7 +1,8 @@
 import { createContext, Dispatch } from 'react'
-import { Actions, CanvasState, initialState } from './canvasReducer'
+import { CanvasProps } from '../interfaces/CanvasProps.interface'
+import { Actions, initialState } from './canvasReducer'
 
 export default createContext<{
-    state: CanvasState
+    state: CanvasProps
     dispatch: Dispatch<Actions>
 }>({ state: initialState, dispatch: () => null })

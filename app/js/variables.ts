@@ -7,4 +7,4 @@ And the height of the canvas would be 10 * 300 = 3000 Pixels
 
 export const canvasWidthInch = 15 // Inches
 export const canvasHeightInch = 10 // Inches
-export const printPixelPerInchQuality = 300 // Pixels
+export const printPixelPerInchQuality = 300 // Pixels Per Inch
