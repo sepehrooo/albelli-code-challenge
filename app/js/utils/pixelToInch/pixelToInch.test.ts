@@ -1,5 +1,5 @@
 import pixelToInch from './pixelToInch'
-import { printPixelPerInchQuality } from '../variables'
+import { printPixelPerInchQuality } from '../../variables'
 
 test('3000 pixel to inches', () => {
     const res = pixelToInch(3000)

@@ -7,7 +7,7 @@ import {
     canvasHeightInch,
     canvasWidthInch,
     printPixelPerInchQuality,
-} from '../utils/variables'
+} from '../variables'
 
 interface HookReturn {
     upload: (file: File) => void | null

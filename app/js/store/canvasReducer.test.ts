@@ -1,6 +1,6 @@
 import calculateRatio from '../utils/calculateRatio/calculateRatio'
 import inchToPixel from '../utils/inchToPixel/inchToPixel'
-import { canvasHeightInch, canvasWidthInch } from '../utils/variables'
+import { canvasHeightInch, canvasWidthInch } from '../variables'
 import {
     canvasReducer,
     initialState,

@@ -2,7 +2,7 @@ import {
     canvasHeightInch,
     canvasWidthInch,
     printPixelPerInchQuality,
-} from '../utils/variables'
+} from '../variables'
 
 export const MOVE_RIGHT = 'APP/IMAGE_EDITOR/MOVE_RIGHT' as const
 export const MOVE_LEFT = 'APP/IMAGE_EDITOR/MOVE_LEFT' as const
