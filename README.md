@@ -19,7 +19,7 @@ Since I wanted to use **React** with **Typescript** to showcase my skills and al
 4. ```yarn install```
 5. ```yarn start``` to run devServer
 6. You can run all tests with ```yarn test --all```
-7. You can build the app for production with ```yarn build```
+7. You can build the app for production with ```yarn build``` it will generate the files in dist folder
 
 
 ## Tech Stack
