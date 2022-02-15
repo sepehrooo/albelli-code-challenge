@@ -30,7 +30,7 @@ function ImageEditor(): JSX.Element {
         <section data-testid="image-editor-component" className="image-editor">
             {src && (
                 <>
-                    <div className="image-editor__row row">
+                    <Row className="image-editor__row row">
                         <Button
                             data-testid="move-up-button"
                             onClick={() => dispatch(moveUp())}
@@ -38,9 +38,9 @@ function ImageEditor(): JSX.Element {
                         >
                             Move Up &#8593;
                         </Button>
-                    </div>
+                    </Row>
 
-                    <div className="image-editor__row row">
+                    <Row className="image-editor__row row">
                         <Button
                             data-testid="move-left-button"
                             onClick={() => dispatch(moveLeft())}
@@ -57,7 +57,7 @@ function ImageEditor(): JSX.Element {
                         >
                             Move Right &#8594;
                         </Button>
-                    </div>
+                    </Row>
 
                     <Row className="image-editor__row row">
                         <Button
