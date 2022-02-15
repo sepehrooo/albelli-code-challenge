@@ -7,7 +7,7 @@ import {
     scaleDown,
     scaleUp,
 } from '../../store/canvasReducer'
-import AppContext from '../../store/AppContext'
+import { AppContext } from '../../store/AppContext'
 import createJsonAndDownload from '../../utils/createJsonAndDownload'
 import Button from '../General/Button'
 import Row from '../General/Row'

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react'
-import AppContext from '../../../store/AppContext'
+import { AppContext } from '../../../store/AppContext'
 import drawImageToCanvas from '../../../utils/drawImageToCanvas'
 import './canvas.scss'
 

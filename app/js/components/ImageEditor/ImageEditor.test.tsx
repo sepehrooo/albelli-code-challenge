@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import AppContext from '../../store/AppContext'
+import { AppContext } from '../../store/AppContext'
 import ImageEditor from '.'
 
 describe('Image Editor', () => {

@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { setErrorMessage, uploadFile } from '../store/canvasReducer'
-import AppContext from '../store/AppContext'
+import { AppContext } from '../store/AppContext'
 import readImage from '../utils/readImage'
 import readJson from '../utils/readJson'
 
