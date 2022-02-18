@@ -13,7 +13,7 @@ export default function isEqual(value1: unknown, value2: unknown): boolean {
     if (keys1.length !== keys2.length) {
         return false
     }
-    keys1.map((key) => {
+    return keys1.every((key) => {
         const val1 = (value1 as any)[key]
         const val2 = (value2 as any)[key]
         const areObjects = isObject(val1) && isObject(val2)
@@ -25,6 +25,4 @@ export default function isEqual(value1: unknown, value2: unknown): boolean {
         }
         return true
     })
-
-    return true
 }
