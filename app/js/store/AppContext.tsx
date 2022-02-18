@@ -1,10 +1,5 @@
-import React, {
-    createContext,
-    Dispatch,
-    ReactElement,
-    useMemo,
-    useReducer,
-} from 'react'
+import React, { createContext, Dispatch, ReactElement, useReducer } from 'react'
+import useCustomMemo from '../hooks/useCustomMemo'
 import { CanvasProps } from '../interfaces/CanvasProps.interface'
 import { Actions, canvasReducer, initialState } from './canvasReducer'
 
@@ -19,7 +14,7 @@ export function AppContextProvider({
     children: JSX.Element
 }): ReactElement {
     const [state, dispatch] = useReducer(canvasReducer, initialState)
-    const contextValue = useMemo(() => {
+    const contextValue = useCustomMemo(() => {
         return { state, dispatch }
     }, [state, dispatch])
     return (
