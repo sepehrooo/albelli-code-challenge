@@ -1,6 +1,6 @@
 export interface DrawImageToCanvasProps {
     canvas: HTMLCanvasElement
-    src: string
+    imageObj: HTMLImageElement
     x: number
     y: number
     width: number

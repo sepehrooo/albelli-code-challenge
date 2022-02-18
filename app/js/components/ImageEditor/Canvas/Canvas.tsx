@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { AppContext } from '../../../store/AppContext'
 import drawImageToCanvas from '../../../utils/drawImageToCanvas'
 import './canvas.scss'
@@ -11,13 +11,14 @@ function Canvas(): JSX.Element {
             image: { src, width, height, x, y, scale, ratio },
         },
     } = useContext(AppContext)
+    const [imageObj, setImageObj] = useState<HTMLImageElement | null>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
     useEffect(() => {
         const canvas = canvasRef.current
-        if (src && canvas) {
+        if (imageObj && canvas) {
             drawImageToCanvas({
                 canvas,
-                src,
+                imageObj,
                 x,
                 y,
                 width,
@@ -26,7 +27,17 @@ function Canvas(): JSX.Element {
                 scale,
             })
         }
-    }, [src, x, y, scale, ratio, width, height])
+    }, [imageObj, x, y, scale, ratio, width, height])
+
+    useEffect(() => {
+        if (src) {
+            const imageObject = new Image()
+            imageObject.onload = () => {
+                setImageObj(imageObject)
+            }
+            imageObject.src = src
+        }
+    }, [src])
 
     return (
         <canvas
